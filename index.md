@@ -1,0 +1,8 @@
+---
+layout: default
+title: Home
+---
+
+# Welcome to My GitHub Pages Site
+
+This is the main page of your GitHub Pages site.
