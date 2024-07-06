@@ -9,6 +9,6 @@ This is the main page of your GitHub Pages site.
 
 ## Sections
 
-- [Introduction](./docs/introduction.md)
-- [Getting Started](./docs/getting-started.md)
+- [Introduction](./Data-Engineering/docs/introduction.md)
+- [Getting Started](./Data-Engineering/docs/getting-started.md)
 
