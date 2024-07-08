@@ -23,65 +23,31 @@ img {
 }
 
 .diagram {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box {
-    background-color: #ddd;
-    padding: 20px;
-    margin: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-.box a {
-    text-decoration: none;
-    color: black;
+    fill: #ffcccb;
+    stroke: #ff7f7f;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.3s, stroke 0.3s, transform 0.3s;
 }
 
 .box:hover, .box.highlight {
-    background-color: #add8e6;
-    border-color: #87ceeb;
+    fill: #ffa07a;
+    stroke: #ff6347;
+    transform: scale(1.05);
 }
 
-.arrow, .arrow-vertical {
-    width: 40px;
-    height: 1px;
-    background-color: black;
-    position: relative;
-}
-
-.arrow::before, .arrow-vertical::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 10px solid black;
-}
-
-.arrow-vertical {
-    height: 40px;
-    width: 1px;
-}
-
-.arrow-vertical::before {
-    top: auto;
-    left: -5px;
-    bottom: -10px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid black;
+text a {
+    fill: black;
+    text-decoration: none;
+    font-weight: bold;
 }

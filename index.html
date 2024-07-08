@@ -13,27 +13,30 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <img src="images/avatar.jpg" alt="Example Image">
-    <div class="diagram">
-        <div class="row">
-            <div class="box" id="box1" data-connected="box2 box3"><a href="page1.html">Node 1</a></div>
-            <div class="box" id="box2" data-connected="box1 box4"><a href="page2.html">Node 2</a></div>
-            <div class="box" id="box3" data-connected="box1 box5"><a href="page3.html">Node 3</a></div>
-        </div>
-        <div class="row">
-            <div class="box" id="box4" data-connected="box2 box6"><a href="page4.html">Node 4</a></div>
-            <div class="box" id="box5" data-connected="box3 box7"><a href="page5.html">Node 5</a></div>
-        </div>
-        <div class="row">
-            <div class="box" id="box6" data-connected="box4 box8"><a href="page6.html">Node 6</a></div>
-            <div class="box" id="box7" data-connected="box5 box9"><a href="page7.html">Node 7</a></div>
-        </div>
-        <div class="row">
-            <div class="box" id="box8" data-connected="box6 box10"><a href="page8.html">Node 8</a></div>
-            <div class="box" id="box9" data-connected="box7"><a href="page9.html">Node 9</a></div>
-            <div class="box" id="box10" data-connected="box8"><a href="page10.html">Node 10</a></div>
-        </div>
-    </div>
+    <img src="images/example.jpg" alt="Example Image">
+    <svg width="800" height="600" class="diagram">
+        <!-- Lines connecting nodes -->
+        <line x1="200" y1="50" x2="300" y2="100" stroke="blue" stroke-width="2"/>
+        <line x1="200" y1="150" x2="300" y2="100" stroke="blue" stroke-width="2"/>
+        <line x1="300" y1="100" x2="400" y2="150" stroke="blue" stroke-width="2"/>
+        <line x1="300" y1="100" x2="400" y2="50" stroke="blue" stroke-width="2"/>
+        
+        <!-- Nodes -->
+        <rect id="box1" x="150" y="50" width="100" height="50" rx="10" ry="10" class="box" data-connected="box2 box3"></rect>
+        <text x="200" y="75" text-anchor="middle" dominant-baseline="middle"><a href="page1.html">Node 1</a></text>
+        
+        <rect id="box2" x="150" y="150" width="100" height="50" rx="10" ry="10" class="box" data-connected="box1 box4"></rect>
+        <text x="200" y="175" text-anchor="middle" dominant-baseline="middle"><a href="page2.html">Node 2</a></text>
+        
+        <rect id="box3" x="250" y="100" width="100" height="50" rx="10" ry="10" class="box" data-connected="box1 box5"></rect>
+        <text x="300" y="125" text-anchor="middle" dominant-baseline="middle"><a href="page3.html">Node 3</a></text>
+        
+        <rect id="box4" x="350" y="150" width="100" height="50" rx="10" ry="10" class="box" data-connected="box2 box6"></rect>
+        <text x="400" y="175" text-anchor="middle" dominant-baseline="middle"><a href="page4.html">Node 4</a></text>
+        
+        <rect id="box5" x="350" y="50" width="100" height="50" rx="10" ry="10" class="box" data-connected="box3 box7"></rect>
+        <text x="400" y="75" text-anchor="middle" dominant-baseline="middle"><a href="page5.html">Node 5</a></text>
+    </svg>
     <script src="scripts/main.js"></script>
 </body>
 </html>
