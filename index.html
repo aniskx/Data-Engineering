@@ -13,13 +13,37 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <img src="images/avatar.jpg" alt="Example Image">
+    <img src="images/example.jpg" alt="Example Image">
     <div class="diagram">
-        <div class="box" id="box1" data-connected="box2 box3"><a href="page1.html">Title 1</a></div>
-        <div class="arrow"></div>
-        <div class="box" id="box2" data-connected="box1 box3"><a href="page2.html">Title 2</a></div>
-        <div class="arrow"></div>
-        <div class="box" id="box3" data-connected="box1 box2"><a href="page3.html">Title 3</a></div>
+        <div class="row">
+            <div class="box" id="box1" data-connected="box2 box3"><a href="page1.html">Node 1</a></div>
+            <div class="arrow"></div>
+            <div class="box" id="box2" data-connected="box1 box4"><a href="page2.html">Node 2</a></div>
+        </div>
+        <div class="arrow-vertical"></div>
+        <div class="row">
+            <div class="box" id="box3" data-connected="box1 box5"><a href="page3.html">Node 3</a></div>
+            <div class="arrow"></div>
+            <div class="box" id="box4" data-connected="box2 box6"><a href="page4.html">Node 4</a></div>
+        </div>
+        <div class="arrow-vertical"></div>
+        <div class="row">
+            <div class="box" id="box5" data-connected="box3 box7"><a href="page5.html">Node 5</a></div>
+            <div class="arrow"></div>
+            <div class="box" id="box6" data-connected="box4 box8"><a href="page6.html">Node 6</a></div>
+        </div>
+        <div class="arrow-vertical"></div>
+        <div class="row">
+            <div class="box" id="box7" data-connected="box5 box9"><a href="page7.html">Node 7</a></div>
+            <div class="arrow"></div>
+            <div class="box" id="box8" data-connected="box6 box10"><a href="page8.html">Node 8</a></div>
+        </div>
+        <div class="arrow-vertical"></div>
+        <div class="row">
+            <div class="box" id="box9" data-connected="box7"><a href="page9.html">Node 9</a></div>
+            <div class="arrow"></div>
+            <div class="box" id="box10" data-connected="box8"><a href="page10.html">Node 10</a></div>
+        </div>
     </div>
     <script src="scripts/main.js"></script>
 </body>
