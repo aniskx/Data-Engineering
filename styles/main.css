@@ -1,9 +1,9 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
 }
 
 nav a {
@@ -14,4 +14,53 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+.diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.box {
+    background-color: #ddd;
+    padding: 20px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.box a {
+    text-decoration: none;
+    color: black;
+}
+
+.box:hover, .box.highlight {
+    background-color: #add8e6;
+    border-color: #87ceeb;
+}
+
+.arrow {
+    width: 40px;
+    height: 1px;
+    background-color: black;
+    position: relative;
+}
+
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid black;
 }

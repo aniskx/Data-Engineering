@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Website</title>
+    <title>Data Flow Diagram</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Welcome to My Website</h1>
@@ -14,8 +13,14 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <img src="images/avatar.jpg" alt="Example Image">
-    <canvas id="myChart" width="400" height="200"></canvas>
+    <img src="images/example.jpg" alt="Example Image">
+    <div class="diagram">
+        <div class="box" id="box1" data-connected="box2 box3"><a href="page1.html">Title 1</a></div>
+        <div class="arrow"></div>
+        <div class="box" id="box2" data-connected="box1 box3"><a href="page2.html">Title 2</a></div>
+        <div class="arrow"></div>
+        <div class="box" id="box3" data-connected="box1 box2"><a href="page3.html">Title 3</a></div>
+    </div>
     <script src="scripts/main.js"></script>
 </body>
 </html>
