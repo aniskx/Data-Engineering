@@ -3,19 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Data Flow Diagram</title>
+    <title>Your Name - Developer & Data Engineer Portfolio</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is a simple website hosted on GitHub Pages.</p>
-    <nav>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <img src="images/avatar.jpg" alt="Example Image">
-    <svg width="800" height="600" class="diagram"></svg>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#learning-path">Learning Path</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <img src="images/avatar.jpg" alt="Your Name" class="avatar">
+        </section>
+
+        <section id="learning-path">
+            <h2>Learning Path</h2>
+            <div id="graph-container"></div>
+        </section>
+
+        <!-- Other sections (About, Projects, Contact) would go here -->
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
     <script src="scripts/main.js"></script>
 </body>
 </html>
