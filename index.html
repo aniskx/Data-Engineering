@@ -39,5 +39,15 @@
     </footer>
 
     <script src="scripts/main.js"></script>
+    <script>
+        // Fallback script in case main.js doesn't load
+        if (typeof d3 === 'undefined') {
+            console.error('D3.js failed to load');
+        } else if (typeof createGraph === 'undefined') {
+            console.error('main.js failed to load or createGraph function is not defined');
+        } else {
+            console.log('D3.js and main.js loaded successfully');
+        }
+    </script>
 </body>
 </html>

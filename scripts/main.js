@@ -1,66 +1,89 @@
-document.addEventListener('DOMContentLoaded', () => {
+function createGraph() {
     const width = 800;
     const height = 600;
 
-    const svg = d3.select("svg")
+    const svg = d3.select("#graph-container")
+        .append("svg")
         .attr("width", width)
         .attr("height", height);
 
     const data = {
         nodes: [
-            { id: 'box1', label: 'Node 1', url: 'page1.html' },
-            { id: 'box2', label: 'Node 2', url: 'page2.html' },
-            { id: 'box3', label: 'Node 3', url: 'page3.html' },
-            { id: 'box4', label: 'Node 4', url: 'page4.html' },
-            { id: 'box5', label: 'Node 5', url: 'page5.html' },
+            { id: "Learn the Basics", group: 1 },
+            { id: "Data Structures and Algorithms", group: 1 },
+            { id: "Advanced Topics", group: 1 },
+            { id: "Learn a Framework", group: 1 },
+            { id: "Testing your Apps", group: 1 },
+            { id: "Version Control", group: 2 },
+            { id: "Databases", group: 2 },
+            { id: "APIs", group: 2 },
+            { id: "Deployment", group: 2 },
+            { id: "Security", group: 2 },
+            { id: "Scalability", group: 2 },
+            { id: "Design Patterns", group: 2 },
+            { id: "Continuous Integration", group: 2 },
+            { id: "Cloud Computing", group: 2 },
+            { id: "Mobile Development", group: 3 },
+            { id: "Web Development", group: 3 },
+            { id: "Data Science", group: 3 },
+            { id: "Machine Learning", group: 3 },
+            { id: "DevOps", group: 3 }
         ],
         links: [
-            { source: 'box1', target: 'box3' },
-            { source: 'box2', target: 'box3' },
-            { source: 'box3', target: 'box4' },
-            { source: 'box3', target: 'box5' },
+            { source: "Learn the Basics", target: "Data Structures and Algorithms" },
+            { source: "Data Structures and Algorithms", target: "Advanced Topics" },
+            { source: "Advanced Topics", target: "Learn a Framework" },
+            { source: "Learn a Framework", target: "Testing your Apps" },
+            { source: "Learn the Basics", target: "Version Control" },
+            { source: "Learn the Basics", target: "Databases" },
+            { source: "Learn the Basics", target: "APIs" },
+            { source: "Advanced Topics", target: "Deployment" },
+            { source: "Advanced Topics", target: "Security" },
+            { source: "Advanced Topics", target: "Scalability" },
+            { source: "Advanced Topics", target: "Design Patterns" },
+            { source: "Testing your Apps", target: "Continuous Integration" },
+            { source: "Deployment", target: "Cloud Computing" },
+            { source: "Learn a Framework", target: "Mobile Development" },
+            { source: "Learn a Framework", target: "Web Development" },
+            { source: "Data Structures and Algorithms", target: "Data Science" },
+            { source: "Data Science", target: "Machine Learning" },
+            { source: "Cloud Computing", target: "DevOps" }
         ]
     };
 
-    const link = svg.selectAll(".link")
+    const simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).id(d => d.id))
+        .force("charge", d3.forceManyBody().strength(-300))
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
+    const link = svg.append("g")
+        .selectAll("line")
         .data(data.links)
-        .enter().append("line")
+        .join("line")
         .attr("class", "link");
 
-    const node = svg.selectAll(".node")
+    const node = svg.append("g")
+        .selectAll("g")
         .data(data.nodes)
-        .enter().append("g")
+        .join("g")
         .attr("class", "node")
-        .on("mouseover", function (event, d) {
-            highlightConnectedNodes(d.id, true);
-        })
-        .on("mouseout", function (event, d) {
-            highlightConnectedNodes(d.id, false);
-        })
-        .call(d3.drag());
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
 
     node.append("rect")
-        .attr("x", -50)
-        .attr("y", -25)
-        .attr("width", 100)
-        .attr("height", 50)
-        .attr("rx", 10)
-        .attr("ry", 10);
+        .attr("width", d => d.id.length * 8)
+        .attr("height", 30)
+        .attr("rx", 5)
+        .attr("ry", 5);
 
-    node.append("a")
-        .attr("href", d => d.url)
-        .append("text")
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle")
-        .text(d => d.label);
+    node.append("text")
+        .text(d => d.id)
+        .attr("x", 5)
+        .attr("y", 20);
 
-    const simulation = d3.forceSimulation(data.nodes)
-        .force("link", d3.forceLink(data.links).id(d => d.id).distance(150))
-        .force("charge", d3.forceManyBody().strength(-500))
-        .force("center", d3.forceCenter(width / 2, height / 2))
-        .on("tick", ticked);
-
-    function ticked() {
+    simulation.on("tick", () => {
         link
             .attr("x1", d => d.source.x)
             .attr("y1", d => d.source.y)
@@ -68,15 +91,33 @@ document.addEventListener('DOMContentLoaded', () => {
             .attr("y2", d => d.target.y);
 
         node
-            .attr("transform", d => `translate(${d.x},${d.y})`);
+            .attr("transform", d => `translate(${d.x - d.id.length * 4},${d.y - 15})`);
+    });
+
+    function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
     }
 
-    function highlightConnectedNodes(nodeId, highlight) {
-        const connectedNodes = data.links
-            .filter(link => link.source.id === nodeId || link.target.id === nodeId)
-            .map(link => link.source.id === nodeId ? link.target.id : link.source.id);
-        
-        node.selectAll("rect")
-            .attr("class", d => connectedNodes.includes(d.id) || d.id === nodeId ? (highlight ? 'highlight' : '') : '');
+    function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+    }
+
+    function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
+    try {
+        createGraph();
+        console.log('Graph created successfully');
+    } catch (error) {
+        console.error('Error creating graph:', error);
     }
 });
