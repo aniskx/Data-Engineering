@@ -1,11 +1,17 @@
-function createGraph() {
-    const width = 800;
-    const height = 600;
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed");
+    
+    try {
+        const width = 1000;
+        const height = 600;
 
-    const svg = d3.select("#graph-container")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        console.log("Creating SVG");
+        const svg = d3.select("#graph-container")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        console.log("SVG created successfully");
 
     const data = {
         nodes: [
@@ -51,16 +57,23 @@ function createGraph() {
         ]
     };
 
+
+    console.log("Data prepared");
+
     const simulation = d3.forceSimulation(data.nodes)
         .force("link", d3.forceLink(data.links).id(d => d.id))
-        .force("charge", d3.forceManyBody().strength(-300))
+        .force("charge", d3.forceManyBody().strength(-1000))
         .force("center", d3.forceCenter(width / 2, height / 2));
+
+    console.log("Simulation created");
 
     const link = svg.append("g")
         .selectAll("line")
         .data(data.links)
         .join("line")
         .attr("class", "link");
+
+    console.log("Links created");
 
     const node = svg.append("g")
         .selectAll("g")
@@ -71,6 +84,8 @@ function createGraph() {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+
+    console.log("Nodes created");
 
     node.append("rect")
         .attr("width", d => d.id.length * 8)
@@ -83,6 +98,8 @@ function createGraph() {
         .attr("x", 5)
         .attr("y", 20);
 
+    console.log("Node rectangles and text created");
+
     simulation.on("tick", () => {
         link
             .attr("x1", d => d.source.x)
@@ -93,6 +110,8 @@ function createGraph() {
         node
             .attr("transform", d => `translate(${d.x - d.id.length * 4},${d.y - 15})`);
     });
+
+    console.log("Simulation tick function set");
 
     function dragstarted(event) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -110,14 +129,9 @@ function createGraph() {
         event.subject.fx = null;
         event.subject.fy = null;
     }
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
-    try {
-        createGraph();
-        console.log('Graph created successfully');
-    } catch (error) {
-        console.error('Error creating graph:', error);
-    }
+    console.log("Drag functions defined");
+} catch (error) {
+    console.error("An error occurred:", error);
+}
 });
